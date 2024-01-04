@@ -1,10 +1,12 @@
 {
   "name": "next-sec-public-runtime-config",
   "description": "Secure NextJs v12 publicRuntimeConfig env",
-  "version": "1.0.0",
-  "main": "dist/index.js",
+  "version": "1.0.1",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "prepublish": "yarn build"
   },
   "author": "fathur.hidayat@gmail.com",
   "keywords": ["next 12", "runtime", "config"],
