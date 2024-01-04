@@ -1,7 +1,7 @@
 import { encryptValue, encryptConfig, decryptValue, decryptConfig } from "./secureConfig";
-import { NextConfig } from "next";
-declare const withSecurePublicRuntimeConfig: (nextConfig: NextConfig, { passPhrase }: {
+declare const withSecurePublicRuntimeConfig: <T>(nextConfig: T & {
+    publicRuntimeConfig: any;
+}, { passPhrase }: {
     passPhrase: string;
-}) => NextConfig;
-declare const getSecureConfig: (passPhrase: string) => NextConfig;
-export { encryptValue, encryptConfig, decryptValue, decryptConfig, withSecurePublicRuntimeConfig, getSecureConfig, };
+}) => T;
+export { encryptValue, encryptConfig, decryptValue, decryptConfig, withSecurePublicRuntimeConfig, };

@@ -1,16 +1,14 @@
-import getNextConfig from "next/config";
 import {
   encryptValue,
   encryptConfig,
   decryptValue,
   decryptConfig,
 } from "./secureConfig";
-import { NextConfig } from "next";
 
-const withSecurePublicRuntimeConfig = (
-  nextConfig: NextConfig,
+const withSecurePublicRuntimeConfig = <T>(
+  nextConfig: T & { publicRuntimeConfig },
   { passPhrase }: { passPhrase: string }
-): NextConfig => {
+): T => {
   return {
     ...nextConfig,
     publicRuntimeConfig: encryptConfig(
@@ -20,19 +18,10 @@ const withSecurePublicRuntimeConfig = (
   };
 };
 
-const getSecureConfig = (passPhrase: string): NextConfig => {
-  const { publicRuntimeConfig = {}, ...rest } = getNextConfig();
-  return {
-    publicRuntimeConfig: decryptConfig(publicRuntimeConfig, passPhrase),
-    ...rest,
-  };
-};
-
 export {
   encryptValue,
   encryptConfig,
   decryptValue,
   decryptConfig,
   withSecurePublicRuntimeConfig,
-  getSecureConfig,
 };

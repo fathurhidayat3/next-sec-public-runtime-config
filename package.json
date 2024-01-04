@@ -1,7 +1,7 @@
 {
   "name": "next-sec-public-runtime-config",
   "description": "Secure NextJs v12 publicRuntimeConfig env",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
@@ -15,8 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "crypto-js": "^4.2.0",
-    "next": "^12"
+    "crypto-js": "^4.2.0"
   },
   "devDependencies": {
     "typescript": "^5.3.3"
