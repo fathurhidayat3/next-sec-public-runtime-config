@@ -1,12 +1,16 @@
-const getNextConfig = require("next/config");
-const {
+import getNextConfig from "next/config";
+import {
   encryptValue,
   encryptConfig,
   decryptValue,
   decryptConfig,
-} = require("./secureConfig");
+} from "./secureConfig";
+import { NextConfig } from "next";
 
-const withSecurePublicRuntimeConfig = (nextConfig, { passPhrase }) => {
+const withSecurePublicRuntimeConfig = (
+  nextConfig: NextConfig,
+  { passPhrase }: { passPhrase: string }
+): NextConfig => {
   return {
     ...nextConfig,
     publicRuntimeConfig: encryptConfig(
@@ -16,7 +20,7 @@ const withSecurePublicRuntimeConfig = (nextConfig, { passPhrase }) => {
   };
 };
 
-const getSecureConfig = (passPhrase) => {
+const getSecureConfig = (passPhrase: string): NextConfig => {
   const { publicRuntimeConfig = {}, ...rest } = getNextConfig();
   return {
     publicRuntimeConfig: decryptConfig(publicRuntimeConfig, passPhrase),
@@ -24,7 +28,7 @@ const getSecureConfig = (passPhrase) => {
   };
 };
 
-module.exports = {
+export {
   encryptValue,
   encryptConfig,
   decryptValue,

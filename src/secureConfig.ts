@@ -1,7 +1,12 @@
-const cryptoAES = require("crypto-js/aes");
-const cryptoENC = require("crypto-js/enc-utf8");
+import cryptoAES from "crypto-js/aes";
+import cryptoENC from "crypto-js/enc-utf8";
 
-const encryptValue = (value, passPhrase) => {
+type EnvConfigType = Record<string, any>;
+
+const encryptValue = (
+  value: string,
+  passPhrase: string
+): string | undefined => {
   if (value) {
     const encrypted = cryptoAES.encrypt(JSON.stringify(value), passPhrase);
     return encrypted.toString();
@@ -9,7 +14,10 @@ const encryptValue = (value, passPhrase) => {
   return undefined;
 };
 
-const encryptConfig = (envConfig, passPhrase) => {
+const encryptConfig = (
+  envConfig: EnvConfigType,
+  passPhrase: string
+): EnvConfigType => {
   let encryptedEnvConfig = {};
   for (const [key, value] of Object.entries(envConfig)) {
     const key_ = encryptValue(key, passPhrase);
@@ -21,7 +29,10 @@ const encryptConfig = (envConfig, passPhrase) => {
   return encryptedEnvConfig;
 };
 
-const decryptValue = (value, passPhrase) => {
+const decryptValue = (
+  value: string,
+  passPhrase: string
+): string | undefined => {
   if (value) {
     const decrypted = cryptoAES.decrypt(value, passPhrase).toString(cryptoENC);
     return JSON.parse(decrypted);
@@ -29,7 +40,10 @@ const decryptValue = (value, passPhrase) => {
   return undefined;
 };
 
-const decryptConfig = (envConfig, passPhrase) => {
+const decryptConfig = (
+  envConfig: EnvConfigType,
+  passPhrase: string
+): EnvConfigType => {
   let decryptedEnvConfig = {};
   for (const [key, value] of Object.entries(envConfig)) {
     const key_ = decryptValue(key, passPhrase);
@@ -41,9 +55,4 @@ const decryptConfig = (envConfig, passPhrase) => {
   return decryptedEnvConfig;
 };
 
-module.exports = {
-  encryptValue,
-  encryptConfig,
-  decryptValue,
-  decryptConfig,
-};
+export { encryptValue, encryptConfig, decryptValue, decryptConfig };

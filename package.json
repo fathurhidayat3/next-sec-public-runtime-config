@@ -2,11 +2,18 @@
   "name": "next-secure-public-runtime-config",
   "description": "Secure NextJs v12 publicRuntimeConfig env",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
   "author": "fathur.hidayat@gmail.com",
+  "keywords": ["next 12", "runtime", "config"],
   "license": "MIT",
   "dependencies": {
     "crypto-js": "^4.2.0",
     "next": "^12"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
