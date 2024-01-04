@@ -1,5 +1,5 @@
 {
-  "name": "next-secure-public-runtime-config",
+  "name": "next-sec-public-runtime-config",
   "description": "Secure NextJs v12 publicRuntimeConfig env",
   "version": "1.0.0",
   "main": "dist/index.js",
@@ -8,6 +8,9 @@
   },
   "author": "fathur.hidayat@gmail.com",
   "keywords": ["next 12", "runtime", "config"],
+  "repository": {
+    "url": "https://github.com/fathurhidayat3/next-sec-public-runtime-config.git"
+  },
   "license": "MIT",
   "dependencies": {
     "crypto-js": "^4.2.0",
